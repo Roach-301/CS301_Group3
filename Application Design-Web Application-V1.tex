@@ -1,0 +1,55 @@
+\documentclass[11pt,a4paper]{article}
+\begin{document}
+\begin{titlepage}
+\title{Web Application: Levels of granularity}
+\author{29236259}
+\maketitle
+\end{titlepage}
+
+
+\section{Presentation Level}
+\subsection{APPLICATION RICH WEB INTERFACE}
+\begin{itemize}
+\item When the user directs to the system through one of the widely used browsers, a login screen is displayed. 
+\item The login screen will be developed with HTML 5 and CSS3
+\item It will consist of textboxes for the username and password and a button to send the information to the server.
+\end{itemize}
+\section{Authentication Level}
+\subsection{LDAP AUTHANTICATION}
+\begin{itemize}
+\item The system accesses the CS LDAP to validate and grant privilege to the logged in user.
+\item When the user has been authenticated, pages are sent over to client browser over HTTPS
+\end{itemize}
+\section{Home Page Level}
+\subsection{POSSIBLE ACTIONS ACCORDING TO PRIVILEGE}
+\begin{itemize}
+\item A student will be directed to a page where he/she will only be able to view leaf and aggregate marks.
+\item Markers will be presented with options to either:
+\begin{itemize}
+\item Create an assessment 
+\item Edit marks for a specific student through a search interface
+\item Delete marks and a text-area for the reason for doing so.
+\item Changes committed will be displayed immediately through the use of JavaScript and JSON. 
+\end{itemize}
+\item Lectures will be able to:
+\begin{itemize}
+\item Manage information about the course through an easy to use interface that will make use of JSON to send data back and forth. 
+\item Manage assessments:
+\begin{itemize}
+\item The lecturer will determine how marks are aggregated.
+\item Lecture will decide which assessments are the leaf assessments.
+\item He will specify how much each leaf assessment contributes to the aggregated mark.
+\end{itemize}
+\item Generate report
+\begin{itemize}
+\item The report can be generated into either a PDF or CSV at any level of granularity.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\section{Application layer Level}
+\subsection{PROTOCOLS TO BE USED}
+\begin{itemize}
+\item SOAP interface will be used through XML unmarshalling when accessed by other systems.
+\item The application will run over, thus SOAP will run over HTTPS for a secure connection.
+\end{itemize}
+\end{document}
