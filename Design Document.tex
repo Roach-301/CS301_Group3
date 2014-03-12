@@ -47,20 +47,11 @@ The android application will be built using JAVA.
 
 \subsection{Chosen frameworks}
 Django application server will eventually be the framework onto which the system will be deployed and Djangos bundled Object-Relational mapper will be used to access the database.
-\subsection{Chosen protocols}
-\begin{itemize}
-\item
-\item 
-\item 
-\item
-\end{itemize}
+\subsection{Chosen protocols}To send data between objects, it will first be encoded into JSON strings. JSON is an easy to use standard that can be parsed by most programming languages. This will enhance our ability to keep layers seperate from each other and just pass JSON strings between layers.
 \subsection{Chosen libraries}
-\begin{itemize}
-\item
-\item 
-\item 
-\item
-\end{itemize}
+PDF creation will be done using iTextPDF from itextpdf.com. iTextPDF is open source with implementations on multiple different platforms. It is also licensed to enable re-use by developers.\\\\
+PDF rendering will be done by using the PDFrenderer library from \\https://github.com/katjas/PDFrenderer. This library is LGPL-2.1 licensed and therefore fine for use by us. The library is written in JAVA and uses JAVA2D to render PDF documents.\\\\
+To marshall and de-marshall JSON, Apache camel will be used from \\http://camel.apache.org/. This library is fully compatible with java and independent from the transport used.
 
 \section{Application design}
 \subsection{Back-end}
