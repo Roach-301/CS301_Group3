@@ -1,0 +1,953 @@
+
+
+\documentclass{article}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+
+\usepackage[dvips]{graphicx}
+
+\begin{document}
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+
+
+ 
+
+\noindent 
+
+\noindent  Software Requirements Specification
+
+\noindent   Squirrel Marking System
+
+\noindent   Version: 1.0
+
+\noindent 
+
+\noindent Organization:
+
+\noindent University of Pretoria: Group 3
+
+\noindent  GitHub:
+
+\noindent  
+
+  https://github.com/Roach-301/CS301\_Group3 
+
+\noindent 
+
+\noindent Authors:
+
+\noindent Johan Esterhuyse (10043283)
+
+\noindent Tokologo Machaba (12078027)
+
+\noindent Heelin Mistry (10299344)
+
+\noindent Pieter le Roux (1045486)
+
+\noindent Rudiger Roach (11004322)
+
+\noindent Thulasizwe Mavuso (29236259)
+
+\noindent 
+
+\noindent March 13, 2014 
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\textbf{Contents}
+
+
+
+
+
+\textbf{1  Software architecture design }??
+
+    1.1  Choices of technologies ??
+
+    1.2  Chosen frameworks ??
+
+    1.3  Chosen protocols ??
+
+    1.4  Chosen libraries ??
+
+
+
+\textbf{2  Application design }??
+
+    2.1  Back-end ??
+
+    2.2  Web Application ??
+
+    2.3  User Interface Design ??
+
+
+
+
+
+
+
+\textbf{3  Application layer Level }??
+
+    3.1  Protocols to be used ??
+
+    3.2  Android Application ??
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+\noindent 
+\subsection{1  Software architecture design}
+
+ 
+
+
+\paragraph{1.1  Choices of technologies}
+
+\noindent The existing web server runs on Apache, therefore our system will continue the use thereof.
+
+\noindent 
+
+\noindent Django web server, running on Apache, will be our interface to run on.
+
+\noindent 
+
+\noindent Djangos Object Relational Mapper Will be used to persist information to the database.
+
+\noindent 
+
+\noindent Django unittest module will be used to perform unit tests with. MySQL server allready runs on the CS server and this existing database will be used to pull information from and store information to.
+
+
+
+\noindent The android application will be built using JAVA.
+
+
+
+
+\paragraph{1.2  Chosen frameworks}
+
+\noindent Django application server will eventually be the framework onto which the system will be deployed and Djangos bundled Object-Relational mapper will be used to access the database. 
+
+\noindent 
+
+
+\paragraph{1.3  Chosen protocols}
+
+\noindent To send data between objects, it will first be encoded into JSON strings. JSON is an easy to use standard that can be parsed by most programming languages. This will enhance our ability to keep layers seperate from each other and just pass JSON strings between layers. 
+
+
+
+
+\paragraph{1.4  Chosen libraries}
+
+\noindent PDF creation will be done using iTextPDF from itextpdf.com. iTextPDF is open source with implementations on multiple different platforms. It is also licensed to enable re-use by developers.
+
+
+
+\noindent PDF rendering will be done by using the PDFrenderer library from 
+
+\noindent https://github.com/katjas/PDFrenderer. This library is LGPL-2.1 licensed and therefore fine for use by us. The library is written in JAVA and uses JAVA2D to render PDF documents.
+
+\noindent 
+
+\noindent To marshall and de-marshall JSON, Apache camel will be used from 
+
+\noindent http://camel.apache.org/. This library is fully compatible with java and independent from the transport used.
+
+
+
+
+
+
+
+\noindent 
+
+\noindent 
+\subsection{2  Application design}
+
+ 
+
+
+\paragraph{2.1  Back-end}
+
+API:
+
+\includegraphics*[width=6.53in, height=3.78in, keepaspectratio=false]{image1}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+\noindent Class Diagram:
+
+\includegraphics*[width=6.45in, height=6.53in, keepaspectratio=false]{image2}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent 
+\paragraph{2.2  Web Application  }
+
+\begin{enumerate}
+\item \textbf{ }When the user directs to the system through one of the widely used browsers, a login screen is displayed. 
+
+\item  The login screen will be developed with HTML 5 and CSS3 
+
+\item  It will consist of textboxes for the username and password and a button to send the information to the server. 
+\end{enumerate}
+
+\noindent 
+
+\noindent \textbf{Authentication Level}
+
+\noindent LDAP Authentication:  
+
+\begin{enumerate}
+\item  The system accesses the CS LDAP to validate and grant privilege to the logged in user. 
+
+\item  When the user has been authenticated, pages are sent over to client browser over HTTPS 
+\end{enumerate}
+
+\noindent 
+
+\noindent \textbf{Home Page Level}
+
+\noindent Possible actions according to privilege:  
+
+\begin{enumerate}
+\item  A student will be directed to a page where he/she will only be able to view leaf and aggregate marks. 
+
+\item  Markers will be presented with options to either:  
+
+\begin{enumerate}
+\item  Create an assessment 
+
+\item  Edit marks for a specific student through a search interface 
+
+\item  Delete marks and a text-area for the reason for doing so. 
+
+\item  Changes committed will be displayed immediately through the use of JavaScript and JSON. 
+\end{enumerate}
+
+\item  Lectures will be able to:  
+
+\begin{enumerate}
+\item  Manage information about the course through an easy to use interface that will make use of JSON to send data back and forth. 
+
+\item  Manage assessments:  
+
+\begin{enumerate}
+\item  The lecturer will determine how marks are aggregated. 
+
+\item  Lecture will decide which assessments are the leaf assessments. 
+
+\item  He will specify how much each leaf assessment contributes to the aggregated mark. 
+\end{enumerate}
+
+\item  Generate report:
+
+\begin{enumerate}
+\item  The report can be generated into either a PDF or CSV at any level of granularity. 
+\end{enumerate}
+\end{enumerate}
+\end{enumerate}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent \textbf{API Specifications}
+
+\noindent \textbf{}
+
+\noindent \textbf{}
+
+\noindent \includegraphics*[width=6.55in, height=6.01in, keepaspectratio=false]{image3}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent \textbf{2.3  User Interface Design}
+
+Login screen:
+
+\includegraphics*[width=2.46in, height=2.76in, keepaspectratio=false]{image4}
+
+\noindent 
+
+Students Menu:
+
+\includegraphics*[width=2.56in, height=2.31in, keepaspectratio=false]{image5}
+
+
+
+Students Marks: 
+
+\includegraphics*[width=2.57in, height=2.45in, keepaspectratio=false]{image6}
+
+
+
+Markers Menu:
+
+\includegraphics*[width=2.66in, height=2.66in, keepaspectratio=false]{image7}
+
+\noindent 
+
+Markers Select: 
+
+\includegraphics*[width=2.68in, height=2.67in, keepaspectratio=false]{image8}
+
+
+
+Markers Update:
+
+\includegraphics*[width=2.67in, height=2.60in, keepaspectratio=false]{image9}
+
+Lecturer Menu: 
+
+\includegraphics*[width=2.78in, height=2.53in, keepaspectratio=false]{image10}
+
+
+
+Lecturer Session:
+
+\includegraphics*[width=2.86in, height=2.65in, keepaspectratio=false]{image11}
+
+
+
+Lecturer Create Session:
+
+\includegraphics*[width=2.92in, height=2.70in, keepaspectratio=false]{image12}
+
+Lecturer Assign Marker:
+
+\includegraphics*[width=2.58in, height=2.68in, keepaspectratio=false]{image13}
+
+\noindent 
+
+Lecturer Assign Student:
+
+\includegraphics*[width=2.57in, height=2.64in, keepaspectratio=false]{image14}
+
+\noindent 
+
+Lecturer Graph:
+
+\includegraphics*[width=2.58in, height=2.57in, keepaspectratio=false]{image15} 
+
+\noindent \textbf{Database Design} 
+
+\noindent The Database will be centralised to one simple design which will be used by all aspects of the system wherever Database access is required.
+
+\textbf{\includegraphics*[width=5.91in, height=2.28in, keepaspectratio=false]{image16}}
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\noindent 
+\subsection{3  Application layer Level}
+
+\noindent 
+
+\textbf{3.1  Protocols to be used}
+
+\begin{enumerate}
+\item \textbf{ }SOAP interface will be used through XML unmarshalling when accessed by other systems. 
+
+\item  The application will run over, thus SOAP will run over HTTPS for a secure connection. 
+\end{enumerate}
+
+ 
+
+\textbf{3.2  Android Application}
+
+The specifications of lower levels of granularity.
+
+
+
+\noindent Users will also have to be able to login to the application using their CS details. Users that should be able to use the application are markers, lecturers and students (who have android smart phones).
+
+\begin{enumerate}
+\item  Students:  
+
+\begin{enumerate}
+\item  Students should be able to check their marks with the android application. 
+\end{enumerate}
+
+\item  Markers: 
+
+\begin{enumerate}
+\item  After logging in markers will be able to insert the marks of students that have been assigned to them, for the subject they are marking. They should only be able to insert marks during the practical session (unless otherwise stated).
+
+\item  Markers can edit student marks but only for a reasonable circumstance.
+
+\item  Markers can search for students by student number, name and surname.
+
+\item  Marks will be saved locally between updates to the server, so if anything happens to the application or the phone information will be saved, therefore no need to reinsert data already done 
+\end{enumerate}
+
+\item  Lecturers:
+
+\begin{enumerate}
+\item  Lecturers should be able to login and choose between a menu of creating a session or viewing marks.
+
+\item  When creating a session, a day, time and duration of the session should be assigned
+
+\item  When assigning students and markers to session, they can be searched for by using student numbers, names and surnames. Multiple students can be assigned to a session by marking the students with a radio button.
+
+\item  After assigning students and markers information should be saved locally between updates to the server. 
+\end{enumerate}
+\end{enumerate}
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\begin{enumerate}
+\item  The application:
+
+\begin{enumerate}
+\item  The system should log out after no more than 10 minutes of not being used.
+
+\item  The mobile uses MySQL database which it interacts with via the server.
+
+\item  Updates between the application and the server should be saved locally on the mobile memory.
+
+\item  When a mark is sent to the system it should be checked to see if it was actually inserted, if not it should try again, if repeated failures are encountered an exception should be thrown telling the user to either retry or try to upload the marks later.
+
+\item  Mark sheets should lock after the practical session has ended, so that no more marks can be inserted (unless otherwise stated). 
+\end{enumerate}
+\end{enumerate}
+
+
+
+\noindent \textbf{API Specifications}
+
+
+
+\noindent In the Android application the markers will be handling the marks as shown below:
+
+\noindent 
+
+\textbf{\includegraphics*[width=6.06in, height=2.32in, keepaspectratio=false]{image17}}
+
+
+
+
+
+
+
+\textbf{\includegraphics*[width=5.83in, height=2.74in, keepaspectratio=false]{image18}}
+
+\noindent  The android application will work according to sessions and whether or not they are open.
+
+\noindent 
+
+\noindent 
+
+\textbf{\includegraphics*[width=6.22in, height=3.66in, keepaspectratio=false]{image19}}
+
+
+
+\noindent 
+
+\noindent Class Diagrams The Android Application will have the following structure:
+
+\textbf{\includegraphics*[width=6.20in, height=3.08in, keepaspectratio=false]{image20}}
+
+\noindent Source: http://developer.android.com/ 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent 
+
+\noindent System Process Specifications
+
+\noindent Login activity Diagram:
+
+\textbf{\includegraphics*[width=6.50in, height=2.94in, keepaspectratio=false]{image21}}
+
+
+
+
+
+
+
+
+
+\noindent Marker's View Point:  
+
+\textbf{\includegraphics*[width=5.91in, height=4.13in, keepaspectratio=false]{image22}}
+
+
+
+
+
+\textbf{User Interface Design:}
+
+Login screen: 
+
+\includegraphics*[width=2.47in, height=3.42in, keepaspectratio=false]{image23}
+
+
+
+
+
+
+
+Students Menu:
+
+ \includegraphics*[width=2.45in, height=3.46in, keepaspectratio=false]{image24}
+
+
+
+
+
+
+
+
+
+
+
+
+
+Students Marks: 
+
+\includegraphics*[width=2.63in, height=3.61in, keepaspectratio=false]{image25}
+
+
+
+
+
+
+
+Markers Menu:
+
+ \includegraphics*[width=2.56in, height=3.70in, keepaspectratio=false]{image26}
+
+
+
+Markers Select: 
+
+\includegraphics*[width=2.51in, height=3.67in, keepaspectratio=false]{image27}
+
+
+
+
+
+
+
+Markers Update:
+
+\includegraphics*[width=2.55in, height=3.77in, keepaspectratio=false]{image28}
+
+
+
+
+
+Lecturer Menu:
+
+\includegraphics*[width=2.58in, height=3.75in, keepaspectratio=false]{image29}
+
+
+
+
+
+
+
+
+
+Lecturer Session:
+
+\noindent       \includegraphics*[width=2.56in, height=3.82in, keepaspectratio=false]{image30}
+
+\noindent 
+
+Lecturer Create:
+
+\includegraphics*[width=2.51in, height=3.74in, keepaspectratio=false]{image31}
+
+
+
+
+
+
+
+Lecturer Assign:
+
+\includegraphics*[width=2.55in, height=3.78in, keepaspectratio=false]{image32}  
+
+
+
+
+
+
+
+Lecturer Graphs:
+
+\includegraphics*[width=2.51in, height=3.73in, keepaspectratio=false]{image33}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Workflow android and web:
+
+\includegraphics*[width=5.37in, height=9.02in, keepaspectratio=false]{image34}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
+
